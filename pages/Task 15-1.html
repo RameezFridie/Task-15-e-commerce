@@ -1,0 +1,176 @@
+<!-- Compulsory Task Note: 
+Feel free to reuse any work you have already done for this project.
+
+Your online store is required to implement the following: 
+● Within the entirety of your site, you should have the following JavaScript functionality:
+ ○ Create a functional shopping cart for your online store.
+ ○ Allow a “quick add to cart” from the catalogue page.
+ ○ Each product’s page must also have the option to “add to cart”.
+ ○ When an item is added, an alert should tell the user what the current total is.
+ ○ Create a new html page for the cart section which allows the user to see what is in their cart, each item’s price, and the total cost (remember to add VAT!)
+ ○ Create a form which allows for “discount coupons”.
+ ○ Create forms to allow a user to select “collection” or “delivery”.
+ ○ Create forms for different delivery options.
+ ○ Your total should change based on what delivery option is chosen and if a certain coupon is applied.
+ ○ Create a “confirm order” button which alerts the user that their order was successful and generates them a reference number (keyword: generate)
+ ○ Within the entirety of your site, you should have at least the following jQuery functionality:
+    ■ A function which contains hiding/showing.
+    ■ A drop-down menu.
+    ■ Animation effects.
+    ■ A function with chained effects.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Capstone Project</title>
+    <link rel="stylesheet" href="../css/Task 15.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <img src="../images/GameHub.png">
+
+    </div>
+    <!-- Navigation -->
+    <div class="row">
+        <div class="col-md-6">
+            <nav id="navBar" class="navbar navbar-expand">
+                <!-- Navbar content -->
+                <ul class="navbar-nav nav-tabs nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Task 15.html">This Month’s Pick</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- Navbar close -->
+        </div>
+    </div>
+    <div>
+        <ul id="show-cart">
+            <!--  -->
+        </ul>
+
+    </div>
+    <div>
+        <button id="clear-cart">Clear Cart</button>
+    </div>
+
+    <div id="a-total">Total: R<span id="total-cart"></span></div>
+    <button id="myBtn">DELIVERY</button>
+    <button id="collect-button"><a href="Collection.html">COLLECT</a></button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="row">
+                <div class="col-75">
+                    <div class="container">
+                        <form>
+
+                            <div class="row">
+                                <div class="col-50">
+                                    <h3>Billing Address</h3>
+                                    <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                    <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                    <input type="text" id="email" name="email" placeholder="john@example.com">
+                                    <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                                    <label for="city"><i class="fa fa-institution"></i> City</label>
+                                    <input type="text" id="city" name="city" placeholder="Cape Town">
+
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <label for="state">State</label>
+                                            <input type="text" id="state" name="state" placeholder="Western Cape">
+                                        </div>
+                                        <div class="col-50">
+                                            <label for="zip">Zip</label>
+                                            <input type="text" id="zip" name="zip" placeholder="10001">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-50">
+                                    <h3>Payment</h3>
+                                    <label for="fname">Accepted Cards</label>
+                                    <div class="icon-container">
+                                        <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                        <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                        <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                        <i class="fa fa-cc-discover" style="color:orange;"></i>
+                                    </div>
+                                    <label for="cname">Name on Card</label>
+                                    <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                    <label for="ccnum">Credit card number</label>
+                                    <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                    <label for="expmonth">Exp Month</label>
+                                    <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <label for="expyear">Exp Year</label>
+                                            <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                        </div>
+                                        <div class="col-50">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" name="cvv" placeholder="352">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <label>
+                        <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                      </label>
+
+                            <a href="ThankYou.html"><button type="submit" class="btn purchase-btn">Continue to checkout</button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="main-footer">
+        <div class="container main-footer-container">
+            <h3 class="band-name">The Game Hub</h3>
+            <ul class="nav footer-nav">
+                <li>
+                    <a href="https://www.youtube.com" target="_blank">
+                        <img class="logo" src="../images/Insta_Logo.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.spotify.com" target="_blank">
+                        <img class="logo" src="../images/Email_Logo.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img class="logo" src="../images/FB_Logo.png">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <script src="../js/Task 15.js"></script>
+</body>
+
+</html>
